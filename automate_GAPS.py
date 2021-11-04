@@ -347,13 +347,15 @@ def send_email(gapsRig23, gapsRig30, gapsRig43):
     html.add_header('Content-Type', 'text/html')
     msg.attach(html)
 
-    
-    s = smtplib.SMTP('smtp-mail.outlook.com: 587')
-    s.starttls()
+    try:
+        s = smtplib.SMTP('smtp-mail.outlook.com: 587')
+        s.starttls()
 
-    # Login Credentials for sending the mail
-    s.login(msg['From'], password)
+        # Login Credentials for sending the mail
+        s.login(msg['From'], password)
 
-    # s.sendmail(msg['From'], msg["To"].split(",") + msg["Cc"].split(","), msg.as_string())
-    s.sendmail(msg['From'], msg["To"].split(","), msg.as_string())
-    s.quit()
+        # s.sendmail(msg['From'], msg["To"].split(",") + msg["Cc"].split(","), msg.as_string())
+        s.sendmail(msg['From'], msg["To"].split(","), msg.as_string())
+        s.quit()
+    except:
+        print('Ocurrio una excepción al enviar el correo')

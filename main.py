@@ -1,5 +1,4 @@
 from automate_GAPS import getGaps
-
 from automate_GAPS import send_email
 
 
