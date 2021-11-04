@@ -14,11 +14,9 @@ from datetime import timedelta
 
 
 
-#dateHourFinish = datetime.now()
-#dateHourBegin = dateHourFinish - timedelta(days=1)
-dateHourFinish=datetime.strptime('02/11/21 07:30:00', '%d/%m/%y %H:%M:%S')
-
+dateHourFinish = datetime.now()
 dateHourBegin = dateHourFinish - timedelta(days=1)
+
 dateHourFinishFormat = (dateHourFinish.strftime("%b %d %Y %H:%M"))
 dateHourBeginFormat = (dateHourBegin.strftime("%b %d %Y %H:%M"))
 
@@ -344,13 +342,7 @@ def send_email(gapsRig23, gapsRig30, gapsRig43):
     msg['To'] = 'lmrincon@skanhawk.com,yfcifuentes@skanhawk.com'
     # msg["Cc"] = "serenity@example.com,inara@example.com"
     password = "Inde3030*"
-   
-      
-    '''
-    pdf = MIMEApplication(open('123.pdf', 'rb').read())
-    pdf.add_header('Content-Disposition','attachment','123.pdf')
-    msg.attach(pdf)
-    '''
+    
     html=MIMEApplication(email_content)
     html.add_header('Content-Type', 'text/html')
     msg.attach(html)
