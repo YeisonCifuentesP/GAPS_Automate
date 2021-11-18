@@ -339,11 +339,9 @@ def send_email(gapsRig23, gapsRig30, gapsRig43):
         dateHourBeginEmail + " - " + dateHourFinishEmail
 
     msg['From'] = 'informacion@skanhawk.com'
-    msg['To'] = 'lmrincon@skanhawk.com,yfcifuentes@skanhawk.com'
+    msg['To'] = 'soporte@skanhawk.com'
     # msg["Cc"] = "serenity@example.com,inara@example.com"
-    password = "Inde3030*"
-
-  
+    password = "Inde3030*"  
     
     html=MIMEApplication(email_content)
     html.add_header('Content-Type', 'text/html')
