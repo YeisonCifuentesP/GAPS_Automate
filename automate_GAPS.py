@@ -12,7 +12,7 @@ from email.mime.application import MIMEApplication
 from datetime import datetime
 from datetime import timedelta
 
-
+#Prueba merge Branch2 a Branch
 
 dateHourFinish = datetime.now()
 dateHourBegin = dateHourFinish - timedelta(days=1)
