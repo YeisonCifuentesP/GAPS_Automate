@@ -343,12 +343,6 @@ def send_email(gapsRig23, gapsRig30, gapsRig43):
     # msg["Cc"] = "serenity@example.com,inara@example.com"
     password = "Inde3030*"
     
-
-       #msg.attach(email_content)
-    pdf = MIMEApplication(open("D:\Independence\Sistema\Desktop\SKAN_HAWK\DOCUMENTACION_SKAN\DOCUMENTOS\Test.xlsx", 'rb').read())
-    pdf.add_header('Content-Disposition', 'attachment', filename= "example.xlsx")
-    msg.attach(pdf)
-   
     html=MIMEApplication(email_content)
     html.add_header('Content-Type', 'text/html')
     msg.attach(html)
