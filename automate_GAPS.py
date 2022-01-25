@@ -88,7 +88,7 @@ def getGaps(deviceId):
         'Porcentaje': [(lowIndicator), (mediumIndicator), (highIndicator), str((len(dfGaps))) + " Registros"],
     })
 
-    return dfIndicator
+    return dfIndicator,dfGaps
 
 #Format of the tables containing the indicators
 def create_html_table(df):
@@ -132,114 +132,131 @@ def body_email(gapsRig23, gapsRig30, gapsRig43):
     htmlTableRig30 = create_html_table(gapsRig30)
     htmlTableRig43 = create_html_table(gapsRig43)
 
-    email_content = """<html>
+    email_content = """<!DOCTYPE html>
+<html>
 
-    <head>
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-   
+
     <title>Indicador Ausencia de Datos</title>
     <style type="text/css">
         a {
-        color: #2E86C1
+            color: #2E86C1
         }
 
         body,
         #header h1,
         #header h2,
         p {
-        margin: 0;
-        padding: 0;
+            margin: 0;
+            padding: 0;
         }
 
         #main {
-        border: 1px solid #cfcece;
-        margin-top: 50px;
+            border: 1px solid #cfcece;
+            margin-top: 50px;
         }
 
         img {
-        display: block;
+            display: block;
         }
 
         #top-message p,
         #bottom p {
-        color: #3f4042;
-        font-size: 12px;
-        font-family: Arial, Helvetica, sans-serif;
+            color: #3f4042;
+            font-size: 9px;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         #header h1 {
-        color: #ffffff !important;     
-        font-family: Dax;
-        font-size: 20px;
-        margin-bottom: 0 !important;
-        padding-bottom: 0;
+            color: #ffffff !important;
+            font-family: Dax;
+            font-size: 20px;
+            margin-bottom: 0 !important;
+            padding-bottom: 0;
         }
 
         #header p {
-        color: #ffffff !important;
-        
-        font-family: "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", sans-serif;
-        font-size: 12px;
+            color: #ffffff !important;
+
+            font-family: "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", sans-serif;
+            font-size: 14px;
         }
 
         h5 {
-        margin: 0 0 0.8em 0;
+            margin: 0 0 0.8em 0;
         }
 
         h5 {
-        font-size: 18px;
-        color: #444444 !important;
-        font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+            color: #444444 !important;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         p {
-        font-size: 12px;
-        color: #ffffff !important;
-        font-family: "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", sans-serif;
-        line-height: 1.5;
+            font-size: 12px;
+            color: #ffffff !important;
+            font-family: "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", sans-serif;
+            line-height: 1.5;
         }
 
         #links p {
-        color: #2E86C1  !important;
-        font-family: "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", sans-serif;
-        font-size: 12px;
+            color: #2E86C1 !important;
+            font-family: "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", sans-serif;
+            font-size: 12px;
         }
 
         #content-3 h5 {
-        color: #000000 !important;     
-        font-family: Dax;
-        font-size: 15px;
-        margin-bottom: 0 !important;
-        padding-bottom: 0;
+            color: #000000 !important;
+            font-family: Dax;
+            font-size: 15px;
+            margin-bottom: 0 !important;
+            padding-bottom: 0;
         }
 
+
+
+        #grad2 {
+            color: #ffffff !important;
+            font-family: Dax;
+            font-size: 8px;
+            margin-bottom: 0 !important;
+            padding-bottom: 0;
+
+
+        }
     </style>
-    </head>
+</head>
 
-    <body>
+<body>
 
-    <table id="grad" width="100%"  background="http://www.skanhawk.com/wp-content/uploads/2021/10/slide_background_4.png" cellpadding="0" cellspacing="0" bgcolor="e4e4e4">
+    <table width="100%" bgcolor="#3B122D" cellpadding="15" cellspacing="15">
         <tr>
-        <td>
-            <table id="main" width="50%" align="center" cellpadding="0" cellspacing="15" bgcolor="ffffff">
-            <tr>
-                <td>
-                <table id="header" cellpadding="10" cellspacing="0" align="center" bgcolor="8fb3e9">
+            <td>
+                <table id="main" width="70%" align="center" cellpadding="0" cellspacing="15" bgcolor="#FFFFFF">
                     <tr>
-                    <td width="400" align="center" bgcolor="#00809D">
-                        <h1>Indicador Ausencia de Datos</h1>
-                        <p align="left">"""+dateHourBeginFormat+"""</p>
-                        <p align="left">"""+dateHourFinishFormat+"""</p>
-                    </td>
-                    <td width="100" align="center" bgcolor="#00809D">
-                        <img src="http://www.skanhawk.com/wp-content/uploads/2021/10/SkanHawk_logo.png" width="120" height="70" />
-                    </td>
-                    </tr>
+                        <td>
+                            <table id="header" cellpadding="5" cellspacing="0" align="center" bgcolor="#00809D">
+                                <tr>
+                                    <td width="300" align="center">
+                                        <h1>Indicador Ausencia de Datos</h1>
+                                        <p align="left">"""+dateHourBeginFormat+"""</p>
+                                        <p align="left">"""+dateHourFinishFormat+"""</p>
+                                    </td>
+                                    <td width="100" align="center">
+                                        <img src="http://www.skanhawk.com/wp-content/uploads/2021/02/SIERRA-ENERGY.png"
+                                            width="120" height="70" />
+                                    </td>
+                                    <td width="100" align="center">
+                                        <img src="http://www.skanhawk.com/wp-content/uploads/2021/02/logo-skanhawk-baja.png"
+                                            width="120" height="70" />
+                                    </td>
+                                </tr>
 
-                </table>
-                </td>
-            </tr>
-            <tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
                 <td>
                 <table id="content-3" cellpadding="0" cellspacing="0" align="center">
                     <tr>
@@ -328,7 +345,7 @@ def body_email(gapsRig23, gapsRig30, gapsRig43):
     return email_content
 
 #Protocol send email
-def send_email(gapsRig23, gapsRig30, gapsRig43):
+def send_email(gapsRig23, gapsRig30, gapsRig43,name_excel):
 
     email_content = body_email(gapsRig23, gapsRig30, gapsRig43)
     dateHourFinishEmail = (dateHourFinish.strftime("%d/%m/%Y %H:%M"))
@@ -339,13 +356,20 @@ def send_email(gapsRig23, gapsRig30, gapsRig43):
         dateHourBeginEmail + " - " + dateHourFinishEmail
 
     msg['From'] = 'informacion@skanhawk.com'
-    msg['To'] = 'soporte@skanhawk.com'
+    #msg['To'] = 'soporte@skanhawk.com'
+    msg['To'] = 'yfcifuentes@skanhawk.com'
     # msg["Cc"] = "serenity@example.com,inara@example.com"
     password = "Inde3030*"  
     
     html=MIMEApplication(email_content)
     html.add_header('Content-Type', 'text/html')
     msg.attach(html)
+
+
+    #msg.attach(email_content)
+    excel = MIMEApplication(open(name_excel, 'rb').read())
+    excel.add_header('Content-Disposition', 'attachment', filename= name_excel+".xlsx")
+    msg.attach(excel)
 
     try:
         s = smtplib.SMTP('smtp-mail.outlook.com: 587')
