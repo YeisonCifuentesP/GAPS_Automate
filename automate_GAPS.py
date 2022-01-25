@@ -356,8 +356,8 @@ def send_email(gapsRig23, gapsRig30, gapsRig43,name_excel):
         dateHourBeginEmail + " - " + dateHourFinishEmail
 
     msg['From'] = 'informacion@skanhawk.com'
-    #msg['To'] = 'soporte@skanhawk.com'
-    msg['To'] = 'yfcifuentes@skanhawk.com'
+    msg['To'] = 'soporte@skanhawk.com'
+    #msg['To'] = 'yfcifuentes@skanhawk.com'
     # msg["Cc"] = "serenity@example.com,inara@example.com"
     password = "Inde3030*"  
     
