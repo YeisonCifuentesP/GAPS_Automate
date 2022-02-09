@@ -345,7 +345,7 @@ def body_email(gapsRig23, gapsRig30, gapsRig43):
     return email_content
 
 #Protocol send email
-def send_email(gapsRig23, gapsRig30, gapsRig43,name_excel):
+def send_email(gapsRig23, gapsRig30, gapsRig43,path):
 
     email_content = body_email(gapsRig23, gapsRig30, gapsRig43)
     dateHourFinishEmail = (dateHourFinish.strftime("%d/%m/%Y %H:%M"))
@@ -356,8 +356,8 @@ def send_email(gapsRig23, gapsRig30, gapsRig43,name_excel):
         dateHourBeginEmail + " - " + dateHourFinishEmail
 
     msg['From'] = 'informacion@skanhawk.com'
-    msg['To'] = 'soporte@skanhawk.com'
-    #msg['To'] = 'yfcifuentes@skanhawk.com'
+    #msg['To'] = 'soporte@skanhawk.com'
+    msg['To'] = 'yfcifuentes@skanhawk.com'
     # msg["Cc"] = "serenity@example.com,inara@example.com"
     password = "Inde3030*"  
     
@@ -367,8 +367,8 @@ def send_email(gapsRig23, gapsRig30, gapsRig43,name_excel):
 
 
     #msg.attach(email_content)
-    excel = MIMEApplication(open(name_excel, 'rb').read())
-    excel.add_header('Content-Disposition', 'attachment', filename= name_excel+".xlsx")
+    excel = MIMEApplication(open(path, 'rb').read())
+    excel.add_header('Content-Disposition', 'attachment', filename= 'GAPS_EXPORT_SIERRACOL.xlsx')
     msg.attach(excel)
 
     try:
