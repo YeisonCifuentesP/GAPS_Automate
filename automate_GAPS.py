@@ -12,10 +12,22 @@ from email.mime.application import MIMEApplication
 from datetime import datetime
 from datetime import timedelta
 
+import time
 
 
-dateHourFinish = datetime.now()
+
+
+dateHourFinish = datetime.now() - timedelta(minutes=1)
 dateHourBegin = dateHourFinish - timedelta(days=1)
+
+
+dateHourFinishUTC = dateHourFinish - timedelta(hours=5)
+dateHourBeginUTC = dateHourBegin- timedelta(hours=5)
+
+dateUnixFinish=time.mktime(dateHourFinishUTC.timetuple())
+dateUnixBegin=time.mktime(dateHourBeginUTC.timetuple())
+
+
 
 dateHourFinishFormat = (dateHourFinish.strftime("%b %d %Y %H:%M"))
 dateHourBeginFormat = (dateHourBegin.strftime("%b %d %Y %H:%M"))
@@ -35,15 +47,32 @@ def getGaps(deviceId):
     cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+server +
                           ';PORT=1433;DATABASE='+database+';UID='+username+';PWD=' + password)
 
-    query = '''SELECT [Id]
-                    ,[carga_gancho]
+    query = '''SELECT [Id]                  
                     ,[fecha_hora]
                     ,[tstm]
                     ,[deviceId]
                 FROM Oxy.Oxy_Operational_data_ALL
                 WHERE  deviceId = '{}' and fecha_hora BETWEEN  '{}' AND '{}' '''.format(deviceId, dateHourBeginSQL, dateHourFinishSQL)
 
-    df = pd.read_sql(query, cnxn)
+
+    df_db = pd.read_sql(query, cnxn)  
+    df = pd.DataFrame({'Id': [0],                   
+                    'fecha_hora' : [dateHourBegin],
+                    'tstm' : [dateUnixBegin],
+                    'deviceId' : [deviceId]
+                    })
+
+    df = pd.concat([df, df_db], ignore_index = True, axis = 0)
+    
+    
+    df_finish = pd.DataFrame({'Id': [0],                   
+                    'fecha_hora' : [dateHourFinish],
+                    'tstm' : [dateUnixFinish],
+                    'deviceId' : [deviceId]
+                    })
+    
+    df = df.append(df_finish, ignore_index = True)  
+    
     listGaps = []
 
     for i, row in df.iterrows():
